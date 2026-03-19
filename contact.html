@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Contact — AdaptIQ ITS</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<nav class="navbar">
+  <div class="container">
+    <a href="index.html" class="nav-brand"><div class="nav-brand-dot"></div>AdaptIQ <span style="font-weight:300;opacity:.5;margin:0 2px">/</span> ITS</a>
+    <div class="nav-links">
+      <a href="index.html">Home</a><a href="about.html">About</a>
+      <a href="assessment.html">Assessment</a><a href="dashboard.html">Dashboard</a>
+      <a href="contact.html">Contact</a>
+    </div>
+    <div class="nav-actions">
+      <button class="dark-toggle" aria-label="Toggle dark mode"></button>
+      <a href="assessment.html" class="btn btn-primary btn-sm">Start →</a>
+      <button class="hamburger" aria-label="Open menu"><span></span><span></span><span></span></button>
+    </div>
+  </div>
+</nav>
+<div class="mobile-menu"><button class="mobile-close">✕ Close</button>
+  <a href="index.html">🏠 Home</a><a href="about.html">📖 About</a>
+  <a href="assessment.html">📝 Assessment</a><a href="dashboard.html">📊 Dashboard</a>
+  <a href="contact.html">✉️ Contact</a>
+</div>
+
+<!-- HEADER -->
+<div style="background:linear-gradient(135deg,var(--forest-dark),var(--forest));padding:4rem 0">
+  <div class="container">
+    <div class="section-eyebrow fade-up" style="color:rgba(255,255,255,.6)">Get In Touch</div>
+    <h1 class="fade-up delay-1" style="color:#fff;margin-bottom:.7rem">Contact & Collaborate</h1>
+    <p class="fade-up delay-2" style="color:rgba(255,255,255,.78);font-size:1rem;max-width:520px">Have questions about the research, want to collaborate, or need help with the system? We'd love to hear from you.</p>
+  </div>
+</div>
+
+<!-- MAIN -->
+<section class="section">
+  <div class="container">
+    <div class="contact-grid">
+
+      <!-- LEFT: Contact info -->
+      <div class="fade-up">
+        <h2 style="margin-bottom:1.5rem">Let's Connect</h2>
+        <p style="margin-bottom:2rem">Whether you're a student, researcher, educator, or developer — we welcome conversations about intelligent tutoring systems and adaptive learning.</p>
+
+        <div class="card" style="margin-bottom:1.5rem;padding:1.5rem">
+          <div class="ci-item">
+            <div class="ci-icon">📧</div>
+            <div>
+              <div class="ci-title">Email</div>
+              <div class="ci-val">research@adaptiq-its.edu</div>
+            </div>
+          </div>
+          <div class="ci-item">
+            <div class="ci-icon">🏛️</div>
+            <div>
+              <div class="ci-title">Institution</div>
+              <div class="ci-val">Department of Computer Science & AI Research Lab</div>
+            </div>
+          </div>
+          <div class="ci-item">
+            <div class="ci-icon">🌐</div>
+            <div>
+              <div class="ci-title">Project</div>
+              <div class="ci-val">ITS Skill Gap Detection — Academic Research 2025</div>
+            </div>
+          </div>
+          <div class="ci-item">
+            <div class="ci-icon">⏰</div>
+            <div>
+              <div class="ci-title">Response Time</div>
+              <div class="ci-val">Usually within 1–2 business days</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Quick links -->
+        <div style="display:flex;flex-direction:column;gap:8px">
+          <a href="about.html" class="btn btn-outline" style="justify-content:flex-start;gap:12px">
+            <span>📖</span> Read About the System
+          </a>
+          <a href="assessment.html" class="btn btn-outline" style="justify-content:flex-start;gap:12px">
+            <span>📝</span> Take the Assessment
+          </a>
+          <a href="dashboard.html" class="btn btn-outline" style="justify-content:flex-start;gap:12px">
+            <span>📊</span> View Dashboard
+          </a>
+        </div>
+      </div>
+
+      <!-- RIGHT: Contact form -->
+      <div class="fade-up delay-2">
+        <div class="card">
+          <h3 style="margin-bottom:.4rem">Send a Message</h3>
+          <p style="font-size:.88rem;margin-bottom:1.5rem">Fill out the form and we'll get back to you.</p>
+
+          <form id="contactForm">
+            <div class="form-row">
+              <div class="form-group">
+                <label class="form-label" for="cName">Full Name *</label>
+                <input type="text" class="form-control" id="cName" placeholder="Your name">
+                <div class="field-error" id="errName">Please enter your full name.</div>
+              </div>
+              <div class="form-group">
+                <label class="form-label" for="cEmail">Email Address *</label>
+                <input type="email" class="form-control" id="cEmail" placeholder="you@email.com">
+                <div class="field-error" id="errEmail">Please enter a valid email address.</div>
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="cSubject">Subject</label>
+              <select class="form-control" id="cSubject">
+                <option value="">— Select a topic —</option>
+                <option>Research Collaboration</option>
+                <option>Assessment Feedback</option>
+                <option>Technical Issue</option>
+                <option>Feature Request</option>
+                <option>Academic Enquiry</option>
+                <option>General Question</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="cMessage">Message *</label>
+              <textarea class="form-control" id="cMessage" placeholder="Tell us about your question, feedback, or how you'd like to collaborate…" rows="5"></textarea>
+              <div class="field-error" id="errMessage">Please write a message (at least 10 characters).</div>
+            </div>
+            <div class="form-group" style="display:flex;align-items:center;gap:10px">
+              <input type="checkbox" id="cConsent" style="width:16px;height:16px;accent-color:var(--forest)">
+              <label for="cConsent" style="font-size:.84rem;color:var(--muted);cursor:pointer">I agree to be contacted regarding this enquiry.</label>
+            </div>
+            <div class="field-error" id="errConsent">Please confirm your consent.</div>
+            <button type="submit" class="btn btn-primary" style="width:100%;margin-top:.5rem">Send Message ✓</button>
+          </form>
+
+          <!-- Success state -->
+          <div id="formSuccess" class="form-success">
+            <div class="success-icon">🎉</div>
+            <h3 style="margin-bottom:.5rem">Message Sent!</h3>
+            <p style="font-size:.9rem;margin-bottom:1.5rem">Thank you for reaching out. We'll reply within 1–2 business days.</p>
+            <button class="btn btn-outline" onclick="resetForm()">Send Another Message</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="section section-alt">
+  <div class="container">
+    <div style="text-align:center;margin-bottom:2.5rem">
+      <div class="section-eyebrow">FAQ</div>
+      <h2>Frequently Asked Questions</h2>
+    </div>
+    <div style="max-width:720px;margin:0 auto">
+      <div class="faq-item fade-up delay-1">
+        <div class="faq-q">
+          <span>Is my assessment data stored on a server?</span>
+          <span class="faq-icon">+</span>
+        </div>
+        <div class="faq-a">No — all data (profile, quiz answers, results) is stored exclusively in your browser's localStorage. Nothing is sent to any server. Clearing your browser data will remove your results.</div>
+      </div>
+      <div class="faq-item fade-up delay-2">
+        <div class="faq-q">
+          <span>Can I retake the assessment to track improvement?</span>
+          <span class="faq-icon">+</span>
+        </div>
+        <div class="faq-a">Yes! You can retake the assessment as many times as you like. Each retake overwrites the previous result. We recommend studying your weak topics for at least 2 weeks before retaking to see measurable improvement.</div>
+      </div>
+      <div class="faq-item fade-up delay-3">
+        <div class="faq-q">
+          <span>What domains will the system support in the future?</span>
+          <span class="faq-icon">+</span>
+        </div>
+        <div class="faq-a">The current assessment covers Computer Science fundamentals (programming, data structures, algorithms, problem solving, logical reasoning). Future versions aim to add domain-specific question banks for Data Science, AI/ML, Web Development, and Mathematics.</div>
+      </div>
+      <div class="faq-item fade-up delay-4">
+        <div class="faq-q">
+          <span>How are the skill gap levels determined?</span>
+          <span class="faq-icon">+</span>
+        </div>
+        <div class="faq-a">Each topic category is scored independently. Strong = ≥70% correct in that category, Moderate = 45–69%, Weak = &lt;45%. These thresholds are based on standard educational mastery criteria. The recommendation engine then prioritises the weakest categories first.</div>
+      </div>
+      <div class="faq-item fade-up delay-5">
+        <div class="faq-q">
+          <span>Can this system be used in a classroom or institution?</span>
+          <span class="faq-icon">+</span>
+        </div>
+        <div class="faq-a">The current version is a research prototype. We welcome collaboration with educators and institutions interested in deploying or extending the system. Please contact us via the form above to discuss classroom integration or licensing.</div>
+      </div>
+      <div class="faq-item fade-up delay-5">
+        <div class="faq-q">
+          <span>Is the source code available?</span>
+          <span class="faq-icon">+</span>
+        </div>
+        <div class="faq-a">The system is built entirely with HTML5, CSS3, and Vanilla JavaScript — no frameworks or libraries. The code is open for academic review and collaboration. Contact us if you'd like access to the full source repository.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <div class="footer-brand">AdaptIQ ITS</div>
+        <p style="font-size:.86rem;max-width:280px;margin-bottom:1rem">An AI-Driven Framework for Personalized and Adaptive Learning through intelligent skill gap detection.</p>
+      </div>
+      <div>
+        <div class="footer-heading">Navigation</div>
+        <ul class="footer-links">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="about.html">About System</a></li>
+          <li><a href="assessment.html">Assessment</a></li>
+          <li><a href="dashboard.html">Dashboard</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="footer-heading">Research</div>
+        <ul class="footer-links">
+          <li><a href="about.html#objectives">Objectives</a></li>
+          <li><a href="about.html#workflow">Workflow</a></li>
+          <li><a href="about.html#benefits">Benefits</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2025 AdaptIQ — Intelligent Tutoring System. Academic Research Project.</span>
+      <span>Built with HTML5 · CSS3 · Vanilla JavaScript</span>
+    </div>
+  </div>
+</footer>
+
+<div id="toast"></div>
+<script src="script.js"></script>
+<script>
+function resetForm() {
+  document.getElementById('contactForm').reset();
+  document.getElementById('contactForm').style.display = 'block';
+  document.getElementById('formSuccess').classList.remove('show');
+}
+
+// Consent validation
+document.addEventListener('DOMContentLoaded', () => {
+  const form = document.getElementById('contactForm');
+  form?.addEventListener('submit', e => {
+    const consent = document.getElementById('cConsent');
+    const err = document.getElementById('errConsent');
+    if (!consent?.checked) {
+      e.stopImmediatePropagation();
+      err?.classList.add('show');
+    } else {
+      err?.classList.remove('show');
+    }
+  }, false); // fires before script.js handler
+});
+</script>
+</body>
+</html>

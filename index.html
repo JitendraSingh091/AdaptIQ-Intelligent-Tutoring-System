@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AdaptIQ — Intelligent Tutoring System</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- NAVBAR -->
+<nav class="navbar">
+  <div class="container">
+    <a href="index.html" class="nav-brand">
+      <div class="nav-brand-dot"></div>
+      AdaptIQ <span style="font-weight:300;opacity:.5;margin:0 2px">/</span> ITS
+    </a>
+    <div class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="about.html">About</a>
+      <a href="assessment.html">Assessment</a>
+      <a href="dashboard.html">Dashboard</a>
+      <a href="contact.html">Contact</a>
+    </div>
+    <div class="nav-actions">
+      <button class="dark-toggle" title="Toggle dark mode" aria-label="Toggle dark mode"></button>
+      <a href="assessment.html" class="btn btn-primary btn-sm">Start →</a>
+      <button class="hamburger" aria-label="Open menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+</nav>
+
+<!-- MOBILE MENU -->
+<div class="mobile-menu" id="mobileMenu">
+  <button class="mobile-close">✕ Close</button>
+  <a href="index.html">🏠 Home</a>
+  <a href="about.html">📖 About</a>
+  <a href="assessment.html">📝 Assessment</a>
+  <a href="dashboard.html">📊 Dashboard</a>
+  <a href="contact.html">✉️ Contact</a>
+</div>
+
+<!-- HERO -->
+<section style="background:var(--bg)">
+  <div class="container">
+    <div class="hero">
+      <!-- LEFT -->
+      <div>
+        <div class="hero-eyebrow fade-up">
+          ✦ AI-Driven Adaptive Learning Framework
+        </div>
+        <h1 class="hero-title fade-up delay-1">
+          Discover Your<br><em>Skill Gaps.</em><br>Accelerate Learning.
+        </h1>
+        <p class="hero-subtitle fade-up delay-2">
+          AdaptIQ is an intelligent tutoring system that identifies your precise knowledge gaps through dynamic assessment and generates personalised learning pathways tailored to your unique profile.
+        </p>
+        <div class="hero-btns fade-up delay-3">
+          <a href="assessment.html" class="btn btn-primary btn-lg">Start Skill Assessment →</a>
+          <a href="about.html"      class="btn btn-outline btn-lg">Learn More</a>
+        </div>
+        <div class="hero-stats fade-up delay-4">
+          <div>
+            <div class="hs-val" data-count="15" data-suffix="">0</div>
+            <div class="hs-lbl">Assessment Questions</div>
+          </div>
+          <div>
+            <div class="hs-val" data-count="5" data-suffix="">0</div>
+            <div class="hs-lbl">Skill Topics</div>
+          </div>
+          <div>
+            <div class="hs-val" data-count="100" data-suffix="%">0%</div>
+            <div class="hs-lbl">Personalised</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- RIGHT — Animated preview card -->
+      <div class="hero-visual">
+        <div class="hero-viz-card">
+          <div class="viz-title">Live Skill Analysis Preview</div>
+          <div class="viz-skill">
+            <div class="viz-skill-name">Data Structures</div>
+            <div class="progress-track">
+              <div class="progress-bar pb-green" data-width="78" style="width:0%"></div>
+            </div>
+          </div>
+          <div class="viz-skill">
+            <div class="viz-skill-name">Algorithms</div>
+            <div class="progress-track">
+              <div class="progress-bar pb-amber" data-width="55" style="width:0%"></div>
+            </div>
+          </div>
+          <div class="viz-skill">
+            <div class="viz-skill-name">Problem Solving</div>
+            <div class="progress-track">
+              <div class="progress-bar pb-orange" data-width="32" style="width:0%"></div>
+            </div>
+          </div>
+          <div class="viz-skill">
+            <div class="viz-skill-name">Logical Reasoning</div>
+            <div class="progress-track">
+              <div class="progress-bar pb-green" data-width="90" style="width:0%"></div>
+            </div>
+          </div>
+          <div class="divider"></div>
+          <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:.5rem">
+            <span class="badge badge-orange">⚠ Gap: Problem Solving</span>
+            <a href="assessment.html" class="btn btn-primary btn-sm">Take Assessment</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FEATURES -->
+<section class="section section-alt">
+  <div class="container">
+    <div style="text-align:center;margin-bottom:3rem;">
+      <div class="section-eyebrow fade-up">Core Capabilities</div>
+      <h2 class="fade-up delay-1">What AdaptIQ Does For You</h2>
+      <p class="section-subtitle fade-up delay-2" style="margin:0 auto">Four interconnected modules working together to create your optimal learning journey.</p>
+    </div>
+    <div class="features-grid">
+      <div class="card fade-up delay-1">
+        <div class="card-icon ci-green">🎯</div>
+        <h3>Skill Gap Detection</h3>
+        <p>Automatically identifies knowledge deficiencies across topic clusters using weighted scoring and category-level analysis.</p>
+      </div>
+      <div class="card fade-up delay-2">
+        <div class="card-icon ci-orange">🧠</div>
+        <h3>Adaptive Assessment</h3>
+        <p>15-question timed MCQ quiz spanning programming fundamentals, data structures, algorithms, and logical reasoning.</p>
+      </div>
+      <div class="card fade-up delay-3">
+        <div class="card-icon ci-amber">🗺️</div>
+        <h3>Personalised Pathways</h3>
+        <p>Generates a sequenced learning plan based on your detected gaps, prioritising topics that need the most attention first.</p>
+      </div>
+      <div class="card fade-up delay-4">
+        <div class="card-icon ci-slate">📊</div>
+        <h3>Progress Dashboard</h3>
+        <p>Visual analytics showing your score, per-topic mastery levels, skill gaps, and recommended next steps — all in one place.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section class="section">
+  <div class="container">
+    <div style="text-align:center;margin-bottom:3rem">
+      <div class="section-eyebrow fade-up">Process</div>
+      <h2 class="fade-up delay-1">How It Works</h2>
+    </div>
+    <div class="how-grid">
+      <div class="how-step fade-up delay-1">
+        <div class="how-num">1</div>
+        <h3>Build Profile</h3>
+        <p>Enter your name, email, learning domain, and current skill level to personalise the system.</p>
+      </div>
+      <div class="how-step fade-up delay-2">
+        <div class="how-num">2</div>
+        <h3>Take Assessment</h3>
+        <p>Answer 15 timed MCQ questions covering key topics in your selected domain.</p>
+      </div>
+      <div class="how-step fade-up delay-3">
+        <div class="how-num">3</div>
+        <h3>Gap Analysis</h3>
+        <p>The system analyses your answers and generates a topic-by-topic skill gap report.</p>
+      </div>
+      <div class="how-step fade-up delay-4">
+        <div class="how-num">4</div>
+        <h3>Get Recommendations</h3>
+        <p>Receive a personalised learning path prioritised by your weakest areas.</p>
+      </div>
+      <div class="how-step fade-up delay-5">
+        <div class="how-num">5</div>
+        <h3>Track Progress</h3>
+        <p>View your dashboard, retake assessments, and watch your mastery grow over time.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- LEARNING DOMAINS -->
+<section class="section section-alt">
+  <div class="container">
+    <div style="text-align:center;margin-bottom:2.5rem">
+      <div class="section-eyebrow">Domains</div>
+      <h2>Supported Learning Areas</h2>
+      <p class="section-subtitle" style="margin:0 auto .5rem">The current assessment covers computer science fundamentals, with domain expansion planned.</p>
+    </div>
+    <div class="domains-grid">
+      <div class="domain-card fade-up delay-1">
+        <div style="font-size:1.5rem;margin-bottom:.5rem">⚙️</div>
+        <h4>Programming Fundamentals</h4>
+        <p>Variables, data types, OOP, and language constructs.</p>
+      </div>
+      <div class="domain-card fade-up delay-2">
+        <div style="font-size:1.5rem;margin-bottom:.5rem">🗂️</div>
+        <h4>Data Structures</h4>
+        <p>Arrays, stacks, queues, trees, graphs, and hash tables.</p>
+      </div>
+      <div class="domain-card fade-up delay-3">
+        <div style="font-size:1.5rem;margin-bottom:.5rem">⚡</div>
+        <h4>Algorithms</h4>
+        <p>Sorting, searching, traversal, and time complexity.</p>
+      </div>
+      <div class="domain-card fade-up delay-4">
+        <div style="font-size:1.5rem;margin-bottom:.5rem">🧩</div>
+        <h4>Problem Solving</h4>
+        <p>Big-O analysis, backtracking, and algorithmic thinking.</p>
+      </div>
+      <div class="domain-card fade-up delay-5">
+        <div style="font-size:1.5rem;margin-bottom:.5rem">🔍</div>
+        <h4>Logical Reasoning</h4>
+        <p>Recursion, type systems, pattern recognition.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="section">
+  <div class="container">
+    <div class="card" style="text-align:center;background:linear-gradient(135deg,var(--forest-dark),var(--forest));border:none;padding:3.5rem 2rem">
+      <div style="font-size:2.5rem;margin-bottom:1rem">🚀</div>
+      <h2 style="color:#fff;margin-bottom:.8rem">Ready to Discover Your Skill Gaps?</h2>
+      <p style="color:rgba(255,255,255,.75);max-width:520px;margin:0 auto 2rem">Take the free assessment now — it only takes 20 minutes and you'll get an instant, personalised learning plan.</p>
+      <a href="assessment.html" class="btn btn-lg" style="background:#fff;color:var(--forest-dark);font-weight:700;box-shadow:0 8px 24px rgba(0,0,0,.2)">Start Your Free Assessment →</a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <div class="footer-brand">AdaptIQ ITS</div>
+        <p style="font-size:.86rem;max-width:280px;margin-bottom:1rem">An AI-Driven Framework for Personalized and Adaptive Learning through intelligent skill gap detection.</p>
+      </div>
+      <div>
+        <div class="footer-heading">Navigation</div>
+        <ul class="footer-links">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="about.html">About System</a></li>
+          <li><a href="assessment.html">Assessment</a></li>
+          <li><a href="dashboard.html">Dashboard</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="footer-heading">Research</div>
+        <ul class="footer-links">
+          <li><a href="about.html#objectives">Objectives</a></li>
+          <li><a href="about.html#workflow">Workflow</a></li>
+          <li><a href="about.html#benefits">Benefits</a></li>
+          <li><a href="contact.html">Collaborate</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2025 AdaptIQ — Intelligent Tutoring System. Academic Research Project.</span>
+      <span>Built with HTML5 · CSS3 · Vanilla JavaScript</span>
+    </div>
+  </div>
+</footer>
+
+<div id="toast"></div>
+<script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Assessment — AdaptIQ ITS</title>
+<link rel="stylesheet" href="style.css">
+<style>
+  .hidden-section { display: none !important; }
+  #quizSection    { display: none; }
+  #resultsSection { display: none; }
+  .profile-saved-tag {
+    display: inline-flex; align-items: center; gap: 6px;
+    font-size: .78rem; font-weight: 600;
+    padding: 4px 12px; border-radius: 99px;
+    background: var(--forest-pale); color: var(--forest-dark);
+    font-family: var(--font-mono);
+  }
+</style>
+</head>
+<body>
+
+<nav class="navbar">
+  <div class="container">
+    <a href="index.html" class="nav-brand"><div class="nav-brand-dot"></div>AdaptIQ <span style="font-weight:300;opacity:.5;margin:0 2px">/</span> ITS</a>
+    <div class="nav-links">
+      <a href="index.html">Home</a><a href="about.html">About</a>
+      <a href="assessment.html">Assessment</a><a href="dashboard.html">Dashboard</a>
+      <a href="contact.html">Contact</a>
+    </div>
+    <div class="nav-actions">
+      <button class="dark-toggle" aria-label="Toggle dark mode"></button>
+      <button class="hamburger" aria-label="Open menu"><span></span><span></span><span></span></button>
+    </div>
+  </div>
+</nav>
+<div class="mobile-menu"><button class="mobile-close">✕ Close</button>
+  <a href="index.html">🏠 Home</a><a href="about.html">📖 About</a>
+  <a href="assessment.html">📝 Assessment</a><a href="dashboard.html">📊 Dashboard</a>
+  <a href="contact.html">✉️ Contact</a>
+</div>
+
+<!-- PAGE HEADER -->
+<div style="background:var(--bg-alt);border-bottom:1px solid var(--border);padding:2.5rem 0">
+  <div class="container">
+    <div class="section-eyebrow fade-up">Step 1 → 2 → 3</div>
+    <h1 class="fade-up delay-1">Skill Assessment</h1>
+    <p class="fade-up delay-2" style="font-size:1rem;max-width:550px;margin-top:.4rem">Complete your profile, take the 15-question timed quiz, and receive your personalised skill gap report.</p>
+  </div>
+</div>
+
+<section style="padding:2.5rem 0 5rem">
+  <div class="container">
+    <div class="assessment-layout">
+
+      <!-- SIDEBAR -->
+      <div class="assessment-sidebar">
+        <!-- Profile display (when saved) -->
+        <div class="card" id="profileDisplayCard">
+          <div class="profile-avatar" id="profileAvatar">🎓</div>
+          <div class="profile-name" id="profileDisplayName">Your Name</div>
+          <div class="profile-meta" id="profileDisplayMeta">Domain · Level</div>
+          <div class="divider"></div>
+          <div style="font-family:var(--font-mono);font-size:.72rem;color:var(--muted);text-transform:uppercase;letter-spacing:.08em;margin-bottom:.8rem">Assessment Progress</div>
+          <div class="progress-wrap">
+            <div class="progress-label"><span>Questions</span><span id="sidebarQPct">0%</span></div>
+            <div class="progress-track"><div class="progress-bar pb-green" id="sidebarQBar" style="width:0%"></div></div>
+          </div>
+          <div style="margin-top:1rem;display:flex;flex-direction:column;gap:8px">
+            <div style="display:flex;justify-content:space-between;font-size:.83rem">
+              <span style="color:var(--muted)">Timer</span>
+              <span style="font-family:var(--font-mono);font-size:.82rem" id="sidebarTimer">20:00</span>
+            </div>
+            <div style="display:flex;justify-content:space-between;font-size:.83rem">
+              <span style="color:var(--muted)">Answered</span>
+              <span style="font-family:var(--font-mono);font-size:.82rem" id="sidebarAnswered">0 / 15</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Tips card -->
+        <div class="card" style="margin-top:1rem">
+          <h4 style="margin-bottom:.8rem;font-size:.95rem">📋 Assessment Tips</h4>
+          <ul style="font-size:.84rem;color:var(--muted);display:flex;flex-direction:column;gap:7px">
+            <li>• 20 minute time limit for the full quiz</li>
+            <li>• You can navigate back with Previous</li>
+            <li>• All questions must be answered to submit</li>
+            <li>• Results are saved automatically</li>
+            <li>• Retake anytime to track improvement</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- MAIN CONTENT -->
+      <div>
+
+        <!-- STEP 1: PROFILE FORM -->
+        <div id="profileSection">
+          <div class="card fade-up">
+            <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:.8rem;margin-bottom:1.5rem">
+              <div>
+                <div class="section-eyebrow" style="margin-bottom:4px">Step 01</div>
+                <h3>Build Your Learner Profile</h3>
+              </div>
+              <span id="profileSavedTag" class="profile-saved-tag" style="display:none">✓ Profile Saved</span>
+            </div>
+            <form id="profileForm">
+              <div class="form-row">
+                <div class="form-group">
+                  <label class="form-label" for="pName">Full Name *</label>
+                  <input type="text" class="form-control" id="pName" placeholder="e.g. Alex Johnson" required>
+                </div>
+                <div class="form-group">
+                  <label class="form-label" for="pEmail">Email Address *</label>
+                  <input type="email" class="form-control" id="pEmail" placeholder="alex@example.com" required>
+                </div>
+              </div>
+              <div class="form-row">
+                <div class="form-group">
+                  <label class="form-label" for="pDomain">Learning Domain *</label>
+                  <select class="form-control" id="pDomain" required>
+                    <option value="">— Select domain —</option>
+                    <option value="Programming">Programming & Software Dev</option>
+                    <option value="Data Science">Data Science & Analytics</option>
+                    <option value="AI/ML">Artificial Intelligence & ML</option>
+                    <option value="Mathematics">Mathematics & Statistics</option>
+                    <option value="Computer Science">Computer Science Fundamentals</option>
+                  </select>
+                </div>
+                <div class="form-group">
+                  <label class="form-label" for="pLevel">Current Skill Level *</label>
+                  <select class="form-control" id="pLevel" required>
+                    <option value="">— Select level —</option>
+                    <option value="beginner">Beginner — New to the subject</option>
+                    <option value="elementary">Elementary — Know the very basics</option>
+                    <option value="intermediate">Intermediate — Some experience</option>
+                    <option value="advanced">Advanced — Significant experience</option>
+                  </select>
+                </div>
+              </div>
+              <div style="display:flex;gap:12px;flex-wrap:wrap;align-items:center">
+                <button type="submit" class="btn btn-primary">Save Profile & Continue →</button>
+                <p style="font-size:.8rem;color:var(--muted)">Profile data stored locally in your browser</p>
+              </div>
+            </form>
+          </div>
+
+          <div class="card fade-up delay-2" style="margin-top:1.5rem">
+            <div style="margin-bottom:1.2rem">
+              <div class="section-eyebrow" style="margin-bottom:4px">Step 02</div>
+              <h3>Start Your Assessment</h3>
+              <p style="margin-top:.4rem;font-size:.9rem">The quiz contains 15 MCQ questions across 5 topic categories. You have 20 minutes to complete it.</p>
+            </div>
+            <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:.8rem;margin-bottom:1.5rem">
+              <div style="padding:.9rem;background:var(--bg-alt);border-radius:var(--radius);border:1px solid var(--border);text-align:center">
+                <div style="font-size:1.4rem;margin-bottom:.3rem">📝</div>
+                <div style="font-size:.82rem;font-weight:600">15 Questions</div>
+              </div>
+              <div style="padding:.9rem;background:var(--bg-alt);border-radius:var(--radius);border:1px solid var(--border);text-align:center">
+                <div style="font-size:1.4rem;margin-bottom:.3rem">⏱️</div>
+                <div style="font-size:.82rem;font-weight:600">20 Minutes</div>
+              </div>
+              <div style="padding:.9rem;background:var(--bg-alt);border-radius:var(--radius);border:1px solid var(--border);text-align:center">
+                <div style="font-size:1.4rem;margin-bottom:.3rem">📊</div>
+                <div style="font-size:.82rem;font-weight:600">5 Topics</div>
+              </div>
+              <div style="padding:.9rem;background:var(--bg-alt);border-radius:var(--radius);border:1px solid var(--border);text-align:center">
+                <div style="font-size:1.4rem;margin-bottom:.3rem">🎯</div>
+                <div style="font-size:.82rem;font-weight:600">Instant Results</div>
+              </div>
+            </div>
+            <button class="btn btn-sienna btn-lg" id="startQuizBtn" disabled>
+              Begin Assessment →
+            </button>
+            <p style="font-size:.8rem;color:var(--muted);margin-top:.8rem">⚠️ Complete your profile above first to enable the assessment.</p>
+          </div>
+        </div>
+
+        <!-- STEP 2: QUIZ -->
+        <div id="quizSection">
+          <div class="card fade-up">
+            <!-- Quiz header -->
+            <div class="quiz-header">
+              <div>
+                <div class="section-eyebrow" style="margin-bottom:3px">Step 02</div>
+                <h3 id="quizTopicLabel">Skill Assessment</h3>
+              </div>
+              <div class="timer-box" id="timerBox">
+                <div class="timer-dot"></div>
+                <span id="timerDisplay">20:00</span>
+              </div>
+            </div>
+
+            <!-- Progress -->
+            <div class="quiz-progress-wrap">
+              <div class="quiz-q-counter" id="qCounter">Question 1 of 15</div>
+              <div class="progress-track" style="height:8px">
+                <div class="progress-bar pb-green" id="quizProgressBar" style="width:6.67%;transition:width .4s ease"></div>
+              </div>
+            </div>
+
+            <!-- Question -->
+            <div id="questionCard" class="question-card">
+              <div class="question-category" id="questionCategory">Category</div>
+              <div class="question-text" id="questionText">Loading question…</div>
+              <div class="options-grid" id="optionsGrid"></div>
+            </div>
+
+            <!-- Navigation -->
+            <div class="quiz-nav">
+              <div class="question-dots" id="questionDots"></div>
+              <div style="display:flex;gap:10px">
+                <button class="btn btn-outline" id="prevBtn" disabled>← Previous</button>
+                <button class="btn btn-primary" id="nextBtn">Next →</button>
+                <button class="btn btn-sienna" id="submitBtn" style="display:none">Submit Quiz ✓</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- STEP 3: RESULTS -->
+        <div id="resultsSection">
+          <!-- Score banner -->
+          <div class="result-banner">
+            <div style="font-size:.85rem;opacity:.7;font-family:var(--font-mono);text-transform:uppercase;letter-spacing:.1em;margin-bottom:.5rem">Your Result</div>
+            <div class="result-score" id="resultScore">— / —</div>
+            <div class="result-label" id="resultGrade">Grade</div>
+            <p style="opacity:.75;font-size:.9rem;margin-top:.5rem;max-width:480px;margin-left:auto;margin-right:auto" id="resultMsg"></p>
+          </div>
+
+          <!-- Skill analysis -->
+          <div class="card fade-up">
+            <div style="margin-bottom:1.5rem">
+              <h3>📊 Skill Gap Analysis</h3>
+              <p style="font-size:.88rem;margin-top:.3rem">Topic-by-topic breakdown of your mastery levels</p>
+            </div>
+            <div id="skillAnalysis"></div>
+          </div>
+
+          <!-- Actions -->
+          <div style="display:flex;gap:12px;flex-wrap:wrap;margin-top:1.5rem">
+            <a href="dashboard.html" class="btn btn-primary btn-lg">View Full Dashboard →</a>
+            <button class="btn btn-outline" onclick="location.reload()">Retake Assessment</button>
+          </div>
+        </div>
+
+      </div><!-- end main -->
+    </div><!-- end layout -->
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div><div class="footer-brand">AdaptIQ ITS</div>
+        <p style="font-size:.86rem;max-width:280px">An AI-Driven Framework for Personalized and Adaptive Learning.</p></div>
+      <div><div class="footer-heading">Navigation</div>
+        <ul class="footer-links">
+          <li><a href="index.html">Home</a></li><li><a href="about.html">About</a></li>
+          <li><a href="assessment.html">Assessment</a></li><li><a href="dashboard.html">Dashboard</a></li>
+        </ul></div>
+      <div><div class="footer-heading">Actions</div>
+        <ul class="footer-links">
+          <li><a href="assessment.html">Retake Quiz</a></li>
+          <li><a href="dashboard.html">View Results</a></li>
+          <li><a href="contact.html">Get Help</a></li>
+        </ul></div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2025 AdaptIQ ITS — Academic Research Project</span>
+      <span>HTML5 · CSS3 · Vanilla JS</span>
+    </div>
+  </div>
+</footer>
+
+<div id="toast"></div>
+<script src="script.js"></script>
+<script>
+  // Sync sidebar timer & answered count with quiz state
+  const origStartTimer = window.startTimer;
+  document.addEventListener('DOMContentLoaded', () => {
+    // Patch timer to also update sidebar
+    const origInterval = setInterval;
+    // Observe DOM changes to sync sidebar
+    const syncSidebar = () => {
+      const timerEl = document.getElementById('timerDisplay');
+      const sidebarTimer = document.getElementById('sidebarTimer');
+      if (timerEl && sidebarTimer) sidebarTimer.textContent = timerEl.textContent;
+      // Answered count
+      if (window.quizState) {
+        const answered = Object.keys(window.quizState.answers || {}).length;
+        const el = document.getElementById('sidebarAnswered');
+        if (el) el.textContent = `${answered} / 15`;
+        const pct = Math.round(answered / 15 * 100);
+        const bar = document.getElementById('sidebarQBar');
+        const pctEl = document.getElementById('sidebarQPct');
+        if (bar) bar.style.width = pct + '%';
+        if (pctEl) pctEl.textContent = pct + '%';
+      }
+    };
+    setInterval(syncSidebar, 500);
+
+    // Show saved tag if profile exists
+    const p = localStorage.getItem('adaptiq_profile');
+    if (p) document.getElementById('profileSavedTag')?.style?.setProperty('display','inline-flex');
+  });
+</script>
+</body>
+</html>

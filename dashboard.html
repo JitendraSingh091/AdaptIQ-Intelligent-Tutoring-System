@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dashboard — AdaptIQ ITS</title>
+<link rel="stylesheet" href="style.css">
+<style>
+  #noDataMsg { display: none; }
+</style>
+</head>
+<body>
+
+<nav class="navbar">
+  <div class="container">
+    <a href="index.html" class="nav-brand"><div class="nav-brand-dot"></div>AdaptIQ <span style="font-weight:300;opacity:.5;margin:0 2px">/</span> ITS</a>
+    <div class="nav-links">
+      <a href="index.html">Home</a><a href="about.html">About</a>
+      <a href="assessment.html">Assessment</a><a href="dashboard.html">Dashboard</a>
+      <a href="contact.html">Contact</a>
+    </div>
+    <div class="nav-actions">
+      <button class="dark-toggle" aria-label="Toggle dark mode"></button>
+      <a href="assessment.html" class="btn btn-primary btn-sm">Retake →</a>
+      <button class="hamburger" aria-label="Open menu"><span></span><span></span><span></span></button>
+    </div>
+  </div>
+</nav>
+<div class="mobile-menu"><button class="mobile-close">✕ Close</button>
+  <a href="index.html">🏠 Home</a><a href="about.html">📖 About</a>
+  <a href="assessment.html">📝 Assessment</a><a href="dashboard.html">📊 Dashboard</a>
+  <a href="contact.html">✉️ Contact</a>
+</div>
+
+<!-- HEADER -->
+<div style="background:var(--bg-alt);border-bottom:1px solid var(--border);padding:2.5rem 0">
+  <div class="container">
+    <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem">
+      <div>
+        <div class="section-eyebrow fade-up">Learning Analytics</div>
+        <h1 class="fade-up delay-1">Your Dashboard</h1>
+        <p class="fade-up delay-2" style="font-size:.95rem;max-width:500px;margin-top:.3rem">Skill gap report, progress analytics, and personalised learning recommendations.</p>
+      </div>
+      <div class="fade-up delay-2" style="display:flex;gap:10px;flex-wrap:wrap">
+        <button class="btn btn-outline" onclick="clearResults()" id="clearBtn">Clear Data</button>
+        <button class="btn btn-sienna" id="retakeBtn">Retake Assessment →</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- NO DATA STATE -->
+<div id="noDataMsg">
+  <div class="container section" style="text-align:center">
+    <div style="font-size:4rem;margin-bottom:1rem">📊</div>
+    <h2>No Assessment Data Yet</h2>
+    <p style="max-width:440px;margin:.8rem auto 2rem">Complete the skill assessment first to see your personalised dashboard with gap analysis and recommendations.</p>
+    <a href="assessment.html" class="btn btn-primary btn-lg">Start Assessment →</a>
+  </div>
+</div>
+
+<!-- DASHBOARD CONTENT -->
+<div id="dashContent">
+  <section style="padding:2rem 0 5rem">
+    <div class="container">
+      <div class="dash-grid">
+
+        <!-- SIDEBAR -->
+        <div class="dash-sidebar">
+
+          <!-- Profile card -->
+          <div class="card" style="text-align:center;margin-bottom:1.2rem">
+            <div class="profile-avatar" id="dashAvatar" style="margin:0 auto .8rem">🎓</div>
+            <div style="font-family:var(--font-head);font-size:1.1rem;font-weight:600;margin-bottom:3px" id="dashName">—</div>
+            <div style="font-size:.82rem;color:var(--muted)" id="dashEmail">—</div>
+            <div class="divider"></div>
+            <div style="display:flex;flex-direction:column;gap:7px;text-align:left">
+              <div style="display:flex;justify-content:space-between;font-size:.85rem">
+                <span style="color:var(--muted)">Domain</span>
+                <span style="font-weight:600;font-size:.83rem" id="dashDomain">—</span>
+              </div>
+              <div style="display:flex;justify-content:space-between;font-size:.85rem">
+                <span style="color:var(--muted)">Level</span>
+                <span style="font-weight:600;font-size:.83rem" id="dashLevel">—</span>
+              </div>
+              <div style="display:flex;justify-content:space-between;font-size:.85rem">
+                <span style="color:var(--muted)">Date</span>
+                <span style="font-weight:600;font-size:.83rem" id="assessmentDate">—</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Score ring -->
+          <div class="card" style="margin-bottom:1.2rem">
+            <div class="score-ring-wrap">
+              <svg class="score-ring-svg" viewBox="0 0 120 120">
+                <circle class="score-ring-bg" cx="60" cy="60" r="54"/>
+                <circle class="score-ring-fill" id="scoreRingFill" cx="60" cy="60" r="54"/>
+              </svg>
+              <div class="score-ring-val" id="dashScoreVal">—</div>
+              <div style="font-size:.8rem;color:var(--muted);text-align:center;margin-top:4px" id="dashScoreLabel">Overall Score</div>
+            </div>
+          </div>
+
+          <!-- Quick stats -->
+          <div class="stat-grid">
+            <div class="stat-box">
+              <div class="stat-val" id="statCorrect" style="color:var(--forest)">—</div>
+              <div class="stat-lbl">Correct</div>
+            </div>
+            <div class="stat-box">
+              <div class="stat-val" id="statWrong" style="color:var(--sienna)">—</div>
+              <div class="stat-lbl">Incorrect</div>
+            </div>
+            <div class="stat-box" style="grid-column:1/-1">
+              <div class="stat-val" id="statPct">—</div>
+              <div class="stat-lbl">Score Percentage</div>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- MAIN DASHBOARD -->
+        <div>
+
+          <!-- Skill Analysis -->
+          <div class="card fade-up" style="margin-bottom:1.5rem">
+            <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:.8rem;margin-bottom:1.5rem">
+              <div>
+                <h3>🔍 Skill Gap Analysis</h3>
+                <p style="font-size:.86rem;margin-top:3px">Your mastery level across assessed topics</p>
+              </div>
+              <div style="display:flex;gap:8px;flex-wrap:wrap">
+                <span class="skill-level sl-strong">● Strong ≥70%</span>
+                <span class="skill-level sl-moderate">● Moderate 45–69%</span>
+                <span class="skill-level sl-weak">● Weak &lt;45%</span>
+              </div>
+            </div>
+            <div id="dashSkillAnalysis">
+              <!-- Populated by JS -->
+            </div>
+          </div>
+
+          <!-- Gap Report -->
+          <div class="card fade-up delay-1" style="margin-bottom:1.5rem">
+            <h3 style="margin-bottom:1.2rem">📋 Skill Gap Report</h3>
+            <div id="gapReport"></div>
+          </div>
+
+          <!-- Recommendations -->
+          <div class="card fade-up delay-2" style="margin-bottom:1.5rem">
+            <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:.8rem;margin-bottom:1.5rem">
+              <div>
+                <h3>🗺️ Personalised Learning Path</h3>
+                <p style="font-size:.86rem;margin-top:3px">Topics ordered by priority — address your weakest areas first</p>
+              </div>
+              <span class="badge badge-orange">AI Recommended</span>
+            </div>
+            <div id="dashRecs"></div>
+          </div>
+
+          <!-- Improvement tips -->
+          <div class="card fade-up delay-3">
+            <h3 style="margin-bottom:1.2rem">💡 Study Strategy Tips</h3>
+            <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:1rem">
+              <div style="padding:1rem;background:var(--bg-alt);border-radius:var(--radius);border:1px solid var(--border)">
+                <div style="font-size:1.3rem;margin-bottom:.4rem">🔄</div>
+                <h4 style="font-size:.9rem;margin-bottom:.3rem">Spaced Repetition</h4>
+                <p style="font-size:.8rem">Review weak topics at increasing intervals: 1 day → 3 days → 1 week → 2 weeks.</p>
+              </div>
+              <div style="padding:1rem;background:var(--bg-alt);border-radius:var(--radius);border:1px solid var(--border)">
+                <div style="font-size:1.3rem;margin-bottom:.4rem">🏗️</div>
+                <h4 style="font-size:.9rem;margin-bottom:.3rem">Build to Learn</h4>
+                <p style="font-size:.8rem">Implement each data structure and algorithm from scratch before using library functions.</p>
+              </div>
+              <div style="padding:1rem;background:var(--bg-alt);border-radius:var(--radius);border:1px solid var(--border)">
+                <div style="font-size:1.3rem;margin-bottom:.4rem">📐</div>
+                <h4 style="font-size:.9rem;margin-bottom:.3rem">Draw It Out</h4>
+                <p style="font-size:.8rem">Visualise algorithms and data structures by drawing them on paper before coding.</p>
+              </div>
+              <div style="padding:1rem;background:var(--bg-alt);border-radius:var(--radius);border:1px solid var(--border)">
+                <div style="font-size:1.3rem;margin-bottom:.4rem">🔁</div>
+                <h4 style="font-size:.9rem;margin-bottom:.3rem">Retake & Track</h4>
+                <p style="font-size:.8rem">Retake this assessment after 2 weeks of study to measure your skill gap closure.</p>
+              </div>
+            </div>
+            <div style="margin-top:1.5rem;text-align:center">
+              <button class="btn btn-primary" id="retakeBtn2" onclick="window.location.href='assessment.html'">Retake Assessment →</button>
+            </div>
+          </div>
+
+        </div><!-- end main -->
+      </div><!-- end grid -->
+    </div>
+  </section>
+</div><!-- end dashContent -->
+
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div><div class="footer-brand">AdaptIQ ITS</div>
+        <p style="font-size:.86rem;max-width:280px">An AI-Driven Framework for Personalized and Adaptive Learning.</p></div>
+      <div><div class="footer-heading">Navigation</div>
+        <ul class="footer-links">
+          <li><a href="index.html">Home</a></li><li><a href="about.html">About</a></li>
+          <li><a href="assessment.html">Assessment</a></li><li><a href="dashboard.html">Dashboard</a></li>
+        </ul></div>
+      <div><div class="footer-heading">Actions</div>
+        <ul class="footer-links">
+          <li><a href="assessment.html">Retake Quiz</a></li>
+          <li><a href="contact.html">Get Help</a></li>
+        </ul></div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2025 AdaptIQ ITS — Academic Research Project</span>
+      <span>HTML5 · CSS3 · Vanilla JS</span>
+    </div>
+  </div>
+</footer>
+
+<div id="toast"></div>
+<script src="script.js"></script>
+<script>
+function clearResults() {
+  if (confirm('Clear all assessment data? This cannot be undone.')) {
+    localStorage.removeItem('adaptiq_result');
+    localStorage.removeItem('adaptiq_profile');
+    showToast('Data cleared. Redirecting…');
+    setTimeout(() => window.location.href = 'assessment.html', 1200);
+  }
+}
+
+// Additional: build gap report card
+document.addEventListener('DOMContentLoaded', () => {
+  setTimeout(() => {
+    const result = (() => { try { return JSON.parse(localStorage.getItem('adaptiq_result')); } catch { return null; } })();
+    if (!result) return;
+
+    const gapEl = document.getElementById('gapReport');
+    if (!gapEl) return;
+
+    const levels = { Strong: [], Moderate: [], Weak: [] };
+    Object.entries(result.topicScores || {}).forEach(([t, d]) => {
+      const pct = Math.round(d.correct / d.total * 100);
+      if (pct >= 70) levels.Strong.push({ t, pct });
+      else if (pct >= 45) levels.Moderate.push({ t, pct });
+      else levels.Weak.push({ t, pct });
+    });
+
+    let html = '';
+
+    if (levels.Weak.length > 0) {
+      html += `<div style="margin-bottom:1.2rem">
+        <div style="display:flex;align-items:center;gap:8px;margin-bottom:.6rem">
+          <div style="width:10px;height:10px;background:var(--sienna);border-radius:50%;box-shadow:0 0 6px var(--sienna)"></div>
+          <strong style="font-size:.85rem;color:var(--sienna)">Critical Gaps — Immediate Action Required</strong>
+        </div>`;
+      levels.Weak.forEach(({t, pct}) => {
+        html += `<div style="padding:10px 14px;background:var(--sienna-pale);border-radius:var(--radius);border:1px solid rgba(193,68,14,.25);margin-bottom:6px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:.5rem">
+          <span style="font-size:.9rem;font-weight:500">${t}</span>
+          <div style="display:flex;align-items:center;gap:8px">
+            <span style="font-family:var(--font-mono);font-size:.82rem;color:var(--sienna)">${pct}% mastery</span>
+            <span class="skill-level sl-weak">Weak</span>
+          </div>
+        </div>`;
+      });
+      html += '</div>';
+    }
+
+    if (levels.Moderate.length > 0) {
+      html += `<div style="margin-bottom:1.2rem">
+        <div style="display:flex;align-items:center;gap:8px;margin-bottom:.6rem">
+          <div style="width:10px;height:10px;background:var(--amber);border-radius:50%;box-shadow:0 0 6px var(--amber)"></div>
+          <strong style="font-size:.85rem;color:#7a5a00">Moderate Gaps — Targeted Practice Needed</strong>
+        </div>`;
+      levels.Moderate.forEach(({t, pct}) => {
+        html += `<div style="padding:10px 14px;background:var(--amber-pale);border-radius:var(--radius);border:1px solid rgba(233,167,42,.3);margin-bottom:6px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:.5rem">
+          <span style="font-size:.9rem;font-weight:500">${t}</span>
+          <div style="display:flex;align-items:center;gap:8px">
+            <span style="font-family:var(--font-mono);font-size:.82rem;color:#7a5a00">${pct}% mastery</span>
+            <span class="skill-level sl-moderate">Moderate</span>
+          </div>
+        </div>`;
+      });
+      html += '</div>';
+    }
+
+    if (levels.Strong.length > 0) {
+      html += `<div>
+        <div style="display:flex;align-items:center;gap:8px;margin-bottom:.6rem">
+          <div style="width:10px;height:10px;background:var(--forest);border-radius:50%;box-shadow:0 0 6px var(--forest)"></div>
+          <strong style="font-size:.85rem;color:var(--forest-dark)">Strong Areas — Keep Reinforcing</strong>
+        </div>`;
+      levels.Strong.forEach(({t, pct}) => {
+        html += `<div style="padding:10px 14px;background:var(--forest-pale);border-radius:var(--radius);border:1px solid rgba(82,183,136,.3);margin-bottom:6px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:.5rem">
+          <span style="font-size:.9rem;font-weight:500">${t}</span>
+          <div style="display:flex;align-items:center;gap:8px">
+            <span style="font-family:var(--font-mono);font-size:.82rem;color:var(--forest-dark)">${pct}% mastery</span>
+            <span class="skill-level sl-strong">Strong</span>
+          </div>
+        </div>`;
+      });
+      html += '</div>';
+    }
+
+    if (html === '') {
+      html = '<p style="color:var(--muted);font-size:.9rem">Complete the assessment to generate your gap report.</p>';
+    }
+
+    gapEl.innerHTML = html;
+  }, 500);
+});
+</script>
+</body>
+</html>
